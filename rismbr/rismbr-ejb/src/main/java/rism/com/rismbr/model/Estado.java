@@ -1,5 +1,7 @@
 package rism.com.rismbr.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,15 +11,23 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name="estado")
-public class Estado {
+public class Estado implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@SequenceGenerator(name="estado_seq_gen", sequenceName="estado_id_seq")
 	@GeneratedValue(strategy= GenerationType.SEQUENCE , generator="estado_seq_gen")
-	private long id;
+	private Long id;
 	
 	@NotNull
+	@NotEmpty
 	@Column(name="sigla")
 	private String sigla;
 	
@@ -25,11 +35,11 @@ public class Estado {
 	@Column(name="nome")
 	private String nome;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
