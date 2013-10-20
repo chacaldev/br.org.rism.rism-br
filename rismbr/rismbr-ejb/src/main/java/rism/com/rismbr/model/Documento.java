@@ -2,19 +2,30 @@ package rism.com.rismbr.model;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Size;
+
+/**
+ * Documento
+ * 
+ * @author David Pasco (cpasco@gmail.com)
+ * @date 19/10/2013
+ * @version 1.0 
+ */
 
 @Entity
 @Table(name="documento", schema="rismbr")
@@ -78,13 +89,16 @@ public class Documento implements Serializable{
 	private Edicao edicao;
 	
 	@ManyToOne
-	@JoinColumn(name = "copista")
-	private Individuo copista;
+	@JoinColumn(name = "copista_id")
+	private Copista copista;
 	
 	@OneToOne
 	@JoinColumn(name = "descricao_fisica_id")
 	private DescricaoFisica descricaoFisica;
-
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "documento")
+	private List<Obra> obras;
+	
 	public Long getId() {
 		return id;
 	}
@@ -197,11 +211,11 @@ public class Documento implements Serializable{
 		this.edicao = edicao;
 	}
 
-	public Individuo getCopista() {
+	public Copista getCopista() {
 		return copista;
 	}
 
-	public void setCopista(Individuo copista) {
+	public void setCopista(Copista copista) {
 		this.copista = copista;
 	}
 
@@ -216,5 +230,13 @@ public class Documento implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
+	public List<Obra> getObras() {
+		return obras;
+	}
+
+	public void setObras(List<Obra> obras) {
+		this.obras = obras;
+	}
+
 }

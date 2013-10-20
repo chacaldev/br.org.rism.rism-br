@@ -14,6 +14,14 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+/**
+ * Individuo
+ * 
+ * @author David Pasco (cpasco@gmail.com)
+ * @date 19/10/2013
+ * @version 1.0 
+ */
+
 @Entity
 @Table(name = "individuo", schema = "rismbr")
 public class Individuo implements Serializable{

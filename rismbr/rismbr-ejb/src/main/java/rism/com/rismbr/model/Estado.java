@@ -13,6 +13,14 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * Estado
+ * 
+ * @author David Pasco (cpasco@gmail.com)
+ * @date 19/10/2013
+ * @version 1.0 
+ */
+
 @Entity
 @Table(name="estado")
 public class Estado implements Serializable{
@@ -24,6 +32,7 @@ public class Estado implements Serializable{
 	@Id
 	@SequenceGenerator(name="estado_seq_gen", sequenceName="estado_id_seq")
 	@GeneratedValue(strategy= GenerationType.SEQUENCE , generator="estado_seq_gen")
+	@Column(name = "id", nullable = false)
 	private Long id;
 	
 	@NotNull

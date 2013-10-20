@@ -17,6 +17,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * Member
+ * 
+ * @author David Pasco (cpasco@gmail.com)
+ * @date 19/10/2013
+ * @version 1.0 
+ */
+
 @Entity
 @XmlRootElement
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
