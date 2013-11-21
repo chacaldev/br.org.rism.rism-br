@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   template="/WEB-INF/templates/default.xhtml">
+   <ui:define name="content">
+      <h1>Teste JSF</h1>
+
+      <h:form id="reg">
+         <h2>Registrar Estado</h2>
+         <table>
+            <tr>
+               <th style="text-align: right;"><h:outputLabel
+                     for="nome" value="Nome:" /></th>
+               <td><h:inputText id="nome" value="#{newEstado.nome}" />
+                  <h:message for="nome" errorClass="invalid" /></td>
+            </tr>
+            <tr>
+               <th style="text-align: right;"><h:outputLabel
+                     for="sigla" value="Sigla:" /></th>
+               <td><h:inputText id="sigla"
+                     value="#{newEstado.sigla}" /> <h:message
+                     for="sigla" errorClass="invalid" /></td>
+            </tr>
+         </table>
+         <p>
+            <h:commandButton id="register"
+               action="#{estadoRegistration.register}" value="Registrar" />
+            <h:outputText value=" Registrado!"
+               rendered="#{facesContext.postback and empty facesContext.messageList}"
+               style="color: green;" />
+         </p>
+      </h:form>
+      <h2>Estados</h2>
+      <h:panelGroup rendered="#{empty estados}">
+         <em>Sem estados registrados.</em>
+      </h:panelGroup>
+      <h:form>
+      <h:dataTable var="_estado" value="#{estados}"
+         rendered="#{not empty estados}">
+         <h:column>
+            <f:facet name="header">Id</f:facet>
+                #{_estado.id}
+            </h:column>
+         <h:column>
+            <f:facet name="header">Nome</f:facet>
+                #{_estado.nome}
+            </h:column>
+         <h:column>
+            <f:facet name="header">Sigla</f:facet>
+                #{_estado.sigla}
+            </h:column>
+         	
+      </h:dataTable>
+      </h:form>
+   </ui:define>
+</ui:composition>
